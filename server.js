@@ -4,8 +4,12 @@
 var http = require('http'),
     url = require('url'),
     path = require('path'),
-    fs = require('fs'),    
+    fs = require('fs'),
+    gpio = require("gpio"),
     tcpport = 8080;
+
+// maps / exports gpio pins
+var rpi_gpio4 = gpio.export(4);  // returns a gpio pin instance and exports that pin    
 
 // Processing parameters
 if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
@@ -61,7 +65,17 @@ http.createServer(function(req, res) {
             var gpio0=gpio;
             gpio0=unescape(gpio0.replace(/\+/g, " ")); // url decode
             console.log("GPIO="+gpio0);
-            //sp.write(gpio0+"\r\n");
+            if(gpio0 === "SET_GPIO_04")
+            {
+                rpi_gpio4.set();
+                console.log("GPIO4_VALUE: "+gpio4.value);
+            }
+            else if(gpio0 === "RESET_GPIO_04")
+            {
+                rpi_gpio4.set(0);
+                console.log("GPIO4_VALUE: "+gpio4.value);
+            }
+
         }
 
         // responding back to the brower request
