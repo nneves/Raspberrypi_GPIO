@@ -1,0 +1,25 @@
+<!doctype html>  
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Raspberry Pi GPIO WebInterface</title>
+  <link rel="stylesheet" href="stylesheets/reset.css" media="all" />
+  <link rel="stylesheet" href="stylesheets/style.css" media="all" />
+</head>
+<body>
+	<div id="block01" class="block01">
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_01');">SET GPIO 01!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_01');">RESET GPIO 01!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_02');">SET GPIO 02!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_02');">RESET GPIO 02!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_03');">SET GPIO 03!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_03');">RESET GPIO 03!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_04');">SET GPIO 04!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_04');">RESET GPIO 04!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_05');">SET GPIO 05!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_05');">RESET GPIO 05!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_06');">SET GPIO 06!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_06');">RESET GPIO 06!</button><br>
+    <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_07');">SET GPIO 07!</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_07');">RESET GPIO 07!</button><br>            
+	</div>
+
+  <script type="text/javascript" src="javascripts/gpio.js"></script>
+  <script type="text/javascript">
+    var rpi_gpio = RPI.Gpio();
+  </script>
+	</body>
+</html>
