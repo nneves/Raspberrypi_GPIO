@@ -1,17 +1,38 @@
 // Raspberry Pi GPIO Remote Control WebInterface
-// NOTE: RPI GPIO requires SUDO
-// sudo node server.js 8080
+// NOTE: Raspberry Pi GPIO access requires sudo 
+//$ sudo node server.js 8080
 
 var http = require('http'),
     url = require('url'),
     path = require('path'),
     fs = require('fs'),
-    gpio = require("gpio"),
+    rpi_gpio = require('rpi-gpio'),
     tcpport = 8080;
 
 // maps / exports gpio pins
-var rpi_gpio4 = gpio.export(4);  // returns a gpio pin instance and exports that pin    
-var rpi_gpio17 = gpio.export(17);
+rpi_gpio.setup(7, rpi_gpio.DIR_OUT, gpioWrite4);
+rpi_gpio.setup(11, rpi_gpio.DIR_OUT, gpioWrite17);
+
+// gpio write function
+function gpioWrite4(value) {
+    rpi_gpio.write(7, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 7 (GPIO4) value:'+value);
+    });
+}
+function gpioWrite17(value) {
+    rpi_gpio.write(11, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 11 (GPIO17) value:'+value);
+    });
+}
+// gpio unexport
+function gpioClose() {
+    rpi_gpio.destroy(function() {
+        console.log('All pins unexported');
+        return process.exit(0);
+    });
+}
 
 // Processing parameters
 if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
@@ -69,26 +90,25 @@ var httpserver = http.createServer(function(req, res) {
             console.log("GPIO="+gpio0);
             if(gpio0 === "SET_GPIO_04")
             {
-                rpi_gpio4.set();
-                console.log("GPIO4_VALUE: "+rpi_gpio4.value);
+                gpioWrite4(true);
+                console.log("GPIO4_VALUE: true");
             }
             else if(gpio0 === "RESET_GPIO_04")
             {
-                rpi_gpio4.set(0);
-                console.log("GPIO4_VALUE: "+rpi_gpio4.value);
+                gpioWrite4(false);
+                console.log("GPIO4_VALUE: false");
             }
 
             if(gpio0 === "SET_GPIO_05")
             {
-                rpi_gpio17.set();
-                console.log("GPIO5_VALUE: "+rpi_gpio17.value);
+                gpioWrite17(true);
+                console.log("GPI17_VALUE: true");
             }
             else if(gpio0 === "RESET_GPIO_05")
             {
-                rpi_gpio17.set(0);
-                console.log("GPIO5_VALUE: "+rpi_gpio17.value);
-            }            
-
+                gpioWrite17(false);
+                console.log("GPI17_VALUE: false");
+            }
         }
 
         // responding back to the brower request
@@ -121,19 +141,13 @@ var httpserver = http.createServer(function(req, res) {
     }); //end path.exists
 }).listen(tcpport);
 
-httpserver.on('close', function(){
-    console.log("Closing Server - Unexport GPIO!");
-    rpi_gpio4.unexport();
-    rpi_gpio17.unexport();
-});
-
 // Startup
 console.log('Raspberry Pi GPIO WebInterface Server running on port '+tcpport);
 
 // CTRL+C (sigint)
 process.on( 'SIGINT', function() {
   console.log("Unexport GPIO!");
-  rpi_gpio4.unexport();
+  gpioClose();
   
   console.log( "Gracefully shutting down from  SIGINT (Crtl-C)");
   process.exit( )
