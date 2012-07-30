@@ -1,5 +1,6 @@
 // Raspberry Pi GPIO Remote Control WebInterface
-// >node server.js 8080
+// NOTE: RPI GPIO requires SUDO
+// sudo node server.js 8080
 
 var http = require('http'),
     url = require('url'),
@@ -10,6 +11,7 @@ var http = require('http'),
 
 // maps / exports gpio pins
 var rpi_gpio4 = gpio.export(4);  // returns a gpio pin instance and exports that pin    
+var rpi_gpio17 = gpio.export(17);
 
 // Processing parameters
 if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
@@ -76,6 +78,17 @@ var httpserver = http.createServer(function(req, res) {
                 console.log("GPIO4_VALUE: "+rpi_gpio4.value);
             }
 
+            if(gpio0 === "SET_GPIO_05")
+            {
+                rpi_gpio17.set();
+                console.log("GPIO5_VALUE: "+rpi_gpio17.value);
+            }
+            else if(gpio0 === "RESET_GPIO_05")
+            {
+                rpi_gpio17.set(0);
+                console.log("GPIO5_VALUE: "+rpi_gpio17.value);
+            }            
+
         }
 
         // responding back to the brower request
@@ -111,6 +124,7 @@ var httpserver = http.createServer(function(req, res) {
 httpserver.on('close', function(){
     console.log("Closing Server - Unexport GPIO!");
     rpi_gpio4.unexport();
+    rpi_gpio17.unexport();
 });
 
 // Startup
