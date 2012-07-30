@@ -108,4 +108,9 @@ http.createServer(function(req, res) {
     }); //end path.exists
 }).listen(tcpport);
 
+http.on('close', function(){
+    console.log("Closing Server - Unexport GPIO!");
+    gpio4.unexport();
+});
+
 console.log('Raspberry Pi GPIO WebInterface Server running on port '+tcpport);
