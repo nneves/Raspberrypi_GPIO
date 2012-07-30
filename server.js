@@ -29,7 +29,7 @@ var mimeTypes = {
     "js": "text/javascript",
     "css": "text/css"};
 
-http.createServer(function(req, res) {
+var httpserver = http.createServer(function(req, res) {
     // checking for default path /
     var uri = "";
     if(url.parse(req.url).pathname === "/") {
@@ -68,12 +68,12 @@ http.createServer(function(req, res) {
             if(gpio0 === "SET_GPIO_04")
             {
                 rpi_gpio4.set();
-                console.log("GPIO4_VALUE: "+gpio4.value);
+                console.log("GPIO4_VALUE: "+rpi_gpio4.value);
             }
             else if(gpio0 === "RESET_GPIO_04")
             {
                 rpi_gpio4.set(0);
-                console.log("GPIO4_VALUE: "+gpio4.value);
+                console.log("GPIO4_VALUE: "+rpi_gpio4.value);
             }
 
         }
@@ -108,9 +108,19 @@ http.createServer(function(req, res) {
     }); //end path.exists
 }).listen(tcpport);
 
-http.on('close', function(){
+httpserver.on('close', function(){
     console.log("Closing Server - Unexport GPIO!");
-    gpio4.unexport();
+    rpi_gpio4.unexport();
 });
 
+// Startup
 console.log('Raspberry Pi GPIO WebInterface Server running on port '+tcpport);
+
+// CTRL+C (sigint)
+process.on( 'SIGINT', function() {
+  console.log("Unexport GPIO!");
+  rpi_gpio4.unexport();
+  
+  console.log( "Gracefully shutting down from  SIGINT (Crtl-C)");
+  process.exit( )
+});
