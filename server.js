@@ -12,6 +12,11 @@ var http = require('http'),
 // maps / exports gpio pins
 rpi_gpio.setup(7, rpi_gpio.DIR_OUT, gpioWrite4);
 rpi_gpio.setup(11, rpi_gpio.DIR_OUT, gpioWrite17);
+rpi_gpio.setup(13, rpi_gpio.DIR_OUT, gpioWrite21);
+rpi_gpio.setup(15, rpi_gpio.DIR_OUT, gpioWrite22);
+rpi_gpio.setup(16, rpi_gpio.DIR_OUT, gpioWrite23);
+rpi_gpio.setup(18, rpi_gpio.DIR_OUT, gpioWrite24);
+rpi_gpio.setup(22, rpi_gpio.DIR_OUT, gpioWrite25);
 
 // gpio write function
 function gpioWrite4(value) {
@@ -26,6 +31,37 @@ function gpioWrite17(value) {
         console.log('Written to pin 11 (GPIO17) value:'+value);
     });
 }
+function gpioWrite21(value) {
+    rpi_gpio.write(13, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 13 (GPIO21) value:'+value);
+    });
+}
+function gpioWrite22(value) {
+    rpi_gpio.write(15, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 15 (GPIO22) value:'+value);
+    });
+}
+function gpioWrite23(value) {
+    rpi_gpio.write(16, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 16 (GPIO23) value:'+value);
+    });
+}
+function gpioWrite24(value) {
+    rpi_gpio.write(18, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 18 (GPIO24) value:'+value);
+    });
+}
+function gpioWrite25(value) {
+    rpi_gpio.write(22, value, function(err) {
+        if (err) throw err;
+        console.log('Written to pin 22 (GPIO25) value:'+value);
+    });
+}
+
 // gpio unexport
 function gpioClose() {
     rpi_gpio.destroy(function() {
@@ -99,17 +135,72 @@ var httpserver = http.createServer(function(req, res) {
                 console.log("GPIO4_VALUE: false");
             }
 
-            if(gpio0 === "SET_GPIO_05")
+            if(gpio0 === "SET_GPIO_17")
             {
                 gpioWrite17(true);
                 console.log("GPI17_VALUE: true");
             }
-            else if(gpio0 === "RESET_GPIO_05")
+            else if(gpio0 === "RESET_GPIO_17")
             {
                 gpioWrite17(false);
                 console.log("GPI17_VALUE: false");
             }
-        }
+
+            if(gpio0 === "SET_GPIO_21")
+            {
+                gpioWrite21(true);
+                console.log("GPI21_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_21")
+            {
+                gpioWrite21(false);
+                console.log("GPI21_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_22")
+            {
+                gpioWrite22(true);
+                console.log("GPI22_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_22")
+            {
+                gpioWrite22(false);
+                console.log("GPI22_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_23")
+            {
+                gpioWrite23(true);
+                console.log("GPI23_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_23")
+            {
+                gpioWrite23(false);
+                console.log("GPI23_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_24")
+            {
+                gpioWrite24(true);
+                console.log("GPI24_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_24")
+            {
+                gpioWrite24(false);
+                console.log("GPI24_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_25")
+            {
+                gpioWrite25(true);
+                console.log("GPI25_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_25")
+            {
+                gpioWrite25(false);
+                console.log("GPI25_VALUE: false");
+            }            
+        }        
 
         // responding back to the brower request
         res.writeHead(200, {'Content-Type':'text/plain'});
