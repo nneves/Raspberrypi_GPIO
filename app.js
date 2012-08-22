@@ -200,10 +200,9 @@ app.router.get('/gpio/:cmd', function (cmd) {
     }        
 
     // responding back to the brower request
-    res.writeHead(200, {'Content-Type':'text/plain'});
-    res.write('ACK');
-    res.end();
-    //return;
+    this.res.writeHead(200, {'Content-Type':'text/plain'});
+    this.res.write('ACK');
+    this.res.end();
 });
 
 // launch app on tcpoprt
