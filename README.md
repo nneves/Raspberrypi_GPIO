@@ -19,6 +19,15 @@ https://github.com/quick2wire/quick2wire-gpio-admin
 Raspberry Pi GPIO node.js packages
 https://github.com/JamesBarwell/rpi-gpio.js
 
+Install Node.js necessary packages
+```bash
+git clone git://github.com/nneves/Raspberrypi_GPIO.git
+
+cd Raspberrypi_GPIO
+
+npm install
+```
+
 Raspberry Pi GPIO access requires sudo 
 $ sudo node server.js 8080
 
