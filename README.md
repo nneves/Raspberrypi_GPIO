@@ -28,8 +28,14 @@ cd Raspberrypi_GPIO
 npm install
 ```
 
-Raspberry Pi GPIO access requires sudo 
-$ sudo node server.js 8080
+Raspberry Pi GPIO access requires sudo
+```bash
+sudo node server.js 8080
+
+or (for quick testing)
+
+npm start
+```
 
 License
 =======
