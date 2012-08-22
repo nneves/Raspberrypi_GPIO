@@ -1,0 +1,22 @@
+{
+  "description": "Raspberry Pi GPIO Remote Control WebInterface",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "union": "0.3.0",
+    "flatiron": "0.2.8",
+    "ecstatic": "0.1.6",
+    "rpi-gpio": "0.0.3"
+  },
+  "devDependenices": {
+    "api-easy": "0.3.2",
+    "vows": "0.6.1"
+  },
+  "scripts": {
+    "test": "vows --spec",
+    "start": "sudo node app.js 8080"
+  },
+  "name": "Raspberrypi_GPIO",
+  "author": "Nelson Neves",
+  "homepage": "/"
+}

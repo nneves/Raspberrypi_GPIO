@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
+2 info using npm@1.1.48
+3 info using node@v0.8.6
+4 verbose node symlink /usr/local/bin/node
+5 verbose config file /Users/nelson/.npmrc
+6 verbose config file /usr/local/etc/npmrc
+7 verbose config file /usr/local/lib/node_modules/npm/npmrc
+8 verbose read json /Users/nelson/work/nodejs/Raspberrypi_GPIO/package.json
+9 verbose run-script [ 'prestart', 'start', 'poststart' ]
+10 info prestart Raspberrypi_GPIO@1.0.0
+11 info start Raspberrypi_GPIO@1.0.0
+12 verbose unsafe-perm in lifecycle true
+13 silly exec sh "-c" "sudo node app.js 8080"
+14 silly sh,-c,sudo node app.js 8080,/Users/nelson/work/nodejs/Raspberrypi_GPIO spawning
+15 info Raspberrypi_GPIO@1.0.0 Failed to exec start script
+16 error Raspberrypi_GPIO@1.0.0 start: `sudo node app.js 8080`
+16 error `sh "-c" "sudo node app.js 8080"` failed with 1
+17 error Failed at the Raspberrypi_GPIO@1.0.0 start script.
+17 error This is most likely a problem with the Raspberrypi_GPIO package,
+17 error not with npm itself.
+17 error Tell the author that this fails on your system:
+17 error     sudo node app.js 8080
+17 error You can get their info via:
+17 error     npm owner ls Raspberrypi_GPIO
+17 error There is likely additional logging output above.
+18 error System Darwin 12.0.0
+19 error command "node" "/usr/local/bin/npm" "start"
+20 error cwd /Users/nelson/work/nodejs/Raspberrypi_GPIO
+21 error node -v v0.8.6
+22 error npm -v 1.1.48
+23 error code ELIFECYCLE
+24 verbose exit [ 1, true ]
