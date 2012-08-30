@@ -17,9 +17,35 @@
     <button type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_25');">Set Output 07</button><button type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_25');">Reset Output 07</button>
 	</div>
 
+  <div id="block02" class="block02">
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_04' });">Set Output 01 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_04' });">Reset Output 01 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_17' });">Set Output 02 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_17' });">Reset Output 02 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_21' });">Set Output 03 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_21' });">Reset Output 03 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_22' });">Set Output 04 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_22' });">Reset Output 04 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_23' });">Set Output 05 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_23' });">Reset Output 05 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_24' });">Set Output 06 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_24' });">Reset Output 06 WS</button><br>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'SET_GPIO_25' });">Set Output 07 WS</button>
+    <button type="button" onclick="socket.emit('gpiodata', { wsdata: 'RESET_GPIO_25' });">Reset Output 07 WS</button><br>
+  </div>
+
   <script type="text/javascript" src="javascripts/gpio.js"></script>
   <script type="text/javascript">
     var rpi_gpio = RPI.Gpio();
+  </script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://workbench01');
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
   </script>
 	</body>
 </html>

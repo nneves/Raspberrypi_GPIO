@@ -6,7 +6,8 @@
     "union": "0.3.0",
     "flatiron": "0.2.8",
     "ecstatic": "0.1.6",
-    "rpi-gpio": "0.0.3"
+    "rpi-gpio": "0.0.3",
+    "socket.io": "0.9.10"
   },
   "devDependenices": {
     "api-easy": "0.3.2",

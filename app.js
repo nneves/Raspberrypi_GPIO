@@ -8,7 +8,8 @@ var flatiron = require('flatiron'),
     ecstatic = require('ecstatic'),
     app = flatiron.app,
     rpi_gpio = require('rpi-gpio'),
-    tcpport = 8080;
+    tcpport = 8080,
+    flag_use_websockets = false;
 
 // Processing parameters
 if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
@@ -17,6 +18,14 @@ if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
 }
 else {
     console.log("Using default tcp/ip port: "+tcpport);
+}
+// websockets param
+if(process.argv[3] !== undefined && process.argv[3].trim() !== '' && process.argv[3].trim() === 'websockets') {
+    flag_use_websockets = true;;
+    console.log("Use WebSockets protocol!");
+}
+else {
+    console.log("Using default Http REST protocol!");
 }
 
 // maps / exports gpio pins
@@ -97,13 +106,13 @@ app.http.before = [
 // flatiron router - API for GCODE commands
 app.router.get('/gpio/:cmd', function (cmd) {
 
-	console.log('\r\nParsing REST gpio command: '+cmd);
+    console.log('\r\nParsing REST gpio command: '+cmd);
 
-	// decode SPACE and ; chars (previously encoded in client)
-	var gpio = cmd.replace(/_/g, " ");
-	gpio = gpio.replace(/--/g, ";");
+    // decode SPACE and ; chars (previously encoded in client)
+    var gpio = cmd.replace(/_/g, " ");
+    gpio = gpio.replace(/--/g, ";");
 
-	console.log('Decoded gpio command: '+gpio);
+    console.log('Decoded gpio command: '+gpio);
 
     // check if it contains a multiple gpio commands (will use ; as separator)
     if(gpio.indexOf(";") != -1) {
@@ -203,11 +212,104 @@ app.router.get('/gpio/:cmd', function (cmd) {
     this.res.writeHead(200, {'Content-Type':'text/plain'});
     this.res.write('ACK');
     this.res.end();
-});
+    });
 
 // launch app on tcpoprt
 app.start(tcpport);
 console.log('Raspberry Pi GPIO WebInterface Server running on port '+tcpport);
+
+// verify if websockets is active
+if(flag_use_websockets === true) {
+
+  var io = require('socket.io').listen(app.server);
+  io.sockets.on('connection', function(socket) {
+      socket.emit('news', { hello: 'world' });
+      socket.on('my other event', function(data) {
+          console.log(data);
+      });
+      socket.on('gpiodata', function(data) {
+          console.log('Received GPIO Data: '+data.wsdata);
+            var gpio0=data.wsdata;
+            console.log("GPIO="+gpio0);
+            if(gpio0 === "SET_GPIO_04")
+            {
+                gpioWrite4(true);
+                console.log("GPIO4_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_04")
+            {
+                gpioWrite4(false);
+                console.log("GPIO4_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_17")
+            {
+                gpioWrite17(true);
+                console.log("GPI17_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_17")
+            {
+                gpioWrite17(false);
+                console.log("GPI17_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_21")
+            {
+                gpioWrite21(true);
+                console.log("GPI21_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_21")
+            {
+                gpioWrite21(false);
+                console.log("GPI21_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_22")
+            {
+                gpioWrite22(true);
+                console.log("GPI22_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_22")
+            {
+                gpioWrite22(false);
+                console.log("GPI22_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_23")
+            {
+                gpioWrite23(true);
+                console.log("GPI23_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_23")
+            {
+                gpioWrite23(false);
+                console.log("GPI23_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_24")
+            {
+                gpioWrite24(true);
+                console.log("GPI24_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_24")
+            {
+                gpioWrite24(false);
+                console.log("GPI24_VALUE: false");
+            }
+
+            if(gpio0 === "SET_GPIO_25")
+            {
+                gpioWrite25(true);
+                console.log("GPI25_VALUE: true");
+            }
+            else if(gpio0 === "RESET_GPIO_25")
+            {
+                gpioWrite25(false);
+                console.log("GPI25_VALUE: false");
+            }
+      });
+  });
+}
 
 // CTRL+C (sigint)
 process.on( 'SIGINT', function() {

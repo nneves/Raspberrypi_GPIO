@@ -37,6 +37,11 @@ or (for quick testing)
 npm start
 ```
 
+Experimental testing with WebSockets protocol
+```bash
+sudo node server.js 8080 websockets
+```
+
 License
 =======
 Copyright (C) 2012 Nelson Neves
