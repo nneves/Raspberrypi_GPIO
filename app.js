@@ -109,8 +109,9 @@ app.router.get('/gpio/:cmd', function (cmd) {
     console.log('\r\nParsing REST gpio command: '+cmd);
 
     // decode SPACE and ; chars (previously encoded in client)
-    var gpio = cmd.replace(/_/g, " ");
-    gpio = gpio.replace(/--/g, ";");
+    var gpio = cmd;
+    //var gpio = cmd.replace(/_/g, " ");
+    //gpio = gpio.replace(/--/g, ";");
 
     console.log('Decoded gpio command: '+gpio);
 
