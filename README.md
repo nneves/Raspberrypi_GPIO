@@ -7,7 +7,7 @@ Work in progress ... (GPIO remote control completed, some optimization required)
 
 
 General Purpose Input/Output (GPIO)
-http://elinux.org/Rpi_Low-level_peripherals#General_Purpose_Input.2FOutput_.28GPIO.29
+http://elinux.org/Rpi_Low-level_peripherals#General_Purpose_Input
 
 GPIO Driving Example (Shell script)
 http://elinux.org/Rpi_Low-level_peripherals#GPIO_Driving_Example_.28Shell_script.29
@@ -17,7 +17,7 @@ http://quick2wire.com/2012/05/safe-controlled-access-to-gpio-on-the-raspberry-pi
 https://github.com/quick2wire/quick2wire-gpio-admin
 
 Raspberry Pi GPIO node.js packages
-https://github.com/JamesBarwell/rpi-gpio.
+https://github.com/JamesBarwell/rpi-gpio
 
 How to compile node.js on a RaspberryPi
 https://github.com/nneves/Raspberrypi_NodeJS
