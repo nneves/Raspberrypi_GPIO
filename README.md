@@ -17,7 +17,7 @@ http://quick2wire.com/2012/05/safe-controlled-access-to-gpio-on-the-raspberry-pi
 https://github.com/quick2wire/quick2wire-gpio-admin
 
 Raspberry Pi GPIO node.js packages
-https://github.com/JamesBarwell/rpi-gpio
+https://github.com/JamesBarwell/rpi-gpio.js
 
 How to compile node.js on a RaspberryPi
 https://github.com/nneves/Raspberrypi_NodeJS
