@@ -21,7 +21,7 @@ else {
 }
 // websockets param
 if(process.argv[3] !== undefined && process.argv[3].trim() !== '' && process.argv[3].trim() === 'websockets') {
-    flag_use_websockets = true;;
+    flag_use_websockets = true;
     console.log("Use WebSockets protocol!");
 }
 else {
@@ -29,57 +29,24 @@ else {
 }
 
 // maps / exports gpio pins
-rpi_gpio.setup(7, rpi_gpio.DIR_OUT, gpioWrite4);
-rpi_gpio.setup(11, rpi_gpio.DIR_OUT, gpioWrite17);
-rpi_gpio.setup(13, rpi_gpio.DIR_OUT, gpioWrite21);
-rpi_gpio.setup(15, rpi_gpio.DIR_OUT, gpioWrite22);
-rpi_gpio.setup(16, rpi_gpio.DIR_OUT, gpioWrite23);
-rpi_gpio.setup(18, rpi_gpio.DIR_OUT, gpioWrite24);
-rpi_gpio.setup(22, rpi_gpio.DIR_OUT, gpioWrite25);
+//                                            (gpio_pin_number, gpio_pin_name)
+rpi_gpio.setup(7,  rpi_gpio.DIR_OUT, gpioWrite(7,  'GPIO_04', false));
+rpi_gpio.setup(11, rpi_gpio.DIR_OUT, gpioWrite(11, 'GPIO_17', false));
+rpi_gpio.setup(13, rpi_gpio.DIR_OUT, gpioWrite(13, 'GPIO_21', false));
+rpi_gpio.setup(15, rpi_gpio.DIR_OUT, gpioWrite(15, 'GPIO_22', false));
+rpi_gpio.setup(16, rpi_gpio.DIR_OUT, gpioWrite(16, 'GPIO_23', false));
+rpi_gpio.setup(18, rpi_gpio.DIR_OUT, gpioWrite(18, 'GPIO_24', false));
+rpi_gpio.setup(22, rpi_gpio.DIR_OUT, gpioWrite(22, 'GPIO_25', false));
 
 // gpio write function
-function gpioWrite4(value) {
-    rpi_gpio.write(7, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 7 (GPIO4) value:'+value);
-    });
-}
-function gpioWrite17(value) {
-    rpi_gpio.write(11, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 11 (GPIO17) value:'+value);
-    });
-}
-function gpioWrite21(value) {
-    rpi_gpio.write(13, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 13 (GPIO21) value:'+value);
-    });
-}
-function gpioWrite22(value) {
-    rpi_gpio.write(15, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 15 (GPIO22) value:'+value);
-    });
-}
-function gpioWrite23(value) {
-    rpi_gpio.write(16, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 16 (GPIO23) value:'+value);
-    });
-}
-function gpioWrite24(value) {
-    rpi_gpio.write(18, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 18 (GPIO24) value:'+value);
-    });
-}
-function gpioWrite25(value) {
-    rpi_gpio.write(22, value, function(err) {
-        if (err) throw err;
-        console.log('Written to pin 22 (GPIO25) value:'+value);
-    });
-}
+function gpioWrite(gpionumber, gpioname, value) {
+    return function() {
+        rpi_gpio.write(gpionumber, value, function(err) {
+            if (err) throw err;
+            console.log('[CB] Written to pin number '+gpionumber+' ('+gpioname+') value:'+value);
+        });        
+    };
+};
 
 // gpio unexport
 function gpioClose() {
@@ -131,81 +98,53 @@ app.router.get('/gpio/:cmd', function (cmd) {
         var gpio0=gpio;
         gpio0=unescape(gpio0.replace(/\+/g, " ")); // url decode
         console.log("GPIO="+gpio0);
-        if(gpio0 === "SET_GPIO_04")
-        {
-            gpioWrite4(true);
-            console.log("GPIO4_VALUE: true");
+        if(gpio0 === "SET_GPIO_04") {
+            gpioWrite(7,  'GPIO_04', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_04")
-        {
-            gpioWrite4(false);
-            console.log("GPIO4_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_04") {
+            gpioWrite(7,  'GPIO_04', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_17")
-        {
-            gpioWrite17(true);
-            console.log("GPI17_VALUE: true");
+        if(gpio0 === "SET_GPIO_17") {
+            gpioWrite(11, 'GPIO_17', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_17")
-        {
-            gpioWrite17(false);
-            console.log("GPI17_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_17") {
+            gpioWrite(11, 'GPIO_17', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_21")
-        {
-            gpioWrite21(true);
-            console.log("GPI21_VALUE: true");
+        if(gpio0 === "SET_GPIO_21") {
+            gpioWrite(13, 'GPIO_21', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_21")
-        {
-            gpioWrite21(false);
-            console.log("GPI21_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_21") {
+            gpioWrite(13, 'GPIO_21', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_22")
-        {
-            gpioWrite22(true);
-            console.log("GPI22_VALUE: true");
+        if(gpio0 === "SET_GPIO_22") {
+            gpioWrite(15, 'GPIO_22', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_22")
-        {
-            gpioWrite22(false);
-            console.log("GPI22_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_22") {
+            gpioWrite(15, 'GPIO_22', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_23")
-        {
-            gpioWrite23(true);
-            console.log("GPI23_VALUE: true");
+        if(gpio0 === "SET_GPIO_23") {
+            gpioWrite(16, 'GPIO_23', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_23")
-        {
-            gpioWrite23(false);
-            console.log("GPI23_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_23") {
+            gpioWrite(16, 'GPIO_23', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_24")
-        {
-            gpioWrite24(true);
-            console.log("GPI24_VALUE: true");
+        if(gpio0 === "SET_GPIO_24") {
+            gpioWrite(18, 'GPIO_24', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_24")
-        {
-            gpioWrite24(false);
-            console.log("GPI24_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_24") {
+            gpioWrite(18, 'GPIO_24', false).call();
         }
 
-        if(gpio0 === "SET_GPIO_25")
-        {
-            gpioWrite25(true);
-            console.log("GPI25_VALUE: true");
+        if(gpio0 === "SET_GPIO_25") {
+            gpioWrite(22, 'GPIO_25', true).call();
         }
-        else if(gpio0 === "RESET_GPIO_25")
-        {
-            gpioWrite25(false);
-            console.log("GPI25_VALUE: false");
+        else if(gpio0 === "RESET_GPIO_25") {
+            gpioWrite(22, 'GPIO_25', false).call();
         }            
     }        
 
@@ -232,81 +171,53 @@ if(flag_use_websockets === true) {
           console.log('Received GPIO Data: '+data.wsdata);
             var gpio0=data.wsdata;
             console.log("GPIO="+gpio0);
-            if(gpio0 === "SET_GPIO_04")
-            {
-                gpioWrite4(true);
-                console.log("GPIO4_VALUE: true");
+            if(gpio0 === "SET_GPIO_04") {
+                gpioWrite(7,  'GPIO_04', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_04")
-            {
-                gpioWrite4(false);
-                console.log("GPIO4_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_04") {
+                gpioWrite(7,  'GPIO_04', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_17")
-            {
-                gpioWrite17(true);
-                console.log("GPI17_VALUE: true");
+            if(gpio0 === "SET_GPIO_17") {
+                gpioWrite(11, 'GPIO_17', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_17")
-            {
-                gpioWrite17(false);
-                console.log("GPI17_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_17") {
+                gpioWrite(11, 'GPIO_17', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_21")
-            {
-                gpioWrite21(true);
-                console.log("GPI21_VALUE: true");
+            if(gpio0 === "SET_GPIO_21") {
+                gpioWrite(13, 'GPIO_21', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_21")
-            {
-                gpioWrite21(false);
-                console.log("GPI21_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_21") {
+                gpioWrite(13, 'GPIO_21', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_22")
-            {
-                gpioWrite22(true);
-                console.log("GPI22_VALUE: true");
+            if(gpio0 === "SET_GPIO_22") {
+                gpioWrite(15, 'GPIO_22', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_22")
-            {
-                gpioWrite22(false);
-                console.log("GPI22_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_22") {
+                gpioWrite(15, 'GPIO_22', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_23")
-            {
-                gpioWrite23(true);
-                console.log("GPI23_VALUE: true");
+            if(gpio0 === "SET_GPIO_23") {
+                gpioWrite(16, 'GPIO_23', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_23")
-            {
-                gpioWrite23(false);
-                console.log("GPI23_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_23") {
+                gpioWrite(16, 'GPIO_23', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_24")
-            {
-                gpioWrite24(true);
-                console.log("GPI24_VALUE: true");
+            if(gpio0 === "SET_GPIO_24") {
+                gpioWrite(18, 'GPIO_24', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_24")
-            {
-                gpioWrite24(false);
-                console.log("GPI24_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_24") {
+                gpioWrite(18, 'GPIO_24', false).call();
             }
 
-            if(gpio0 === "SET_GPIO_25")
-            {
-                gpioWrite25(true);
-                console.log("GPI25_VALUE: true");
+            if(gpio0 === "SET_GPIO_25") {
+                gpioWrite(22, 'GPIO_25', true).call();
             }
-            else if(gpio0 === "RESET_GPIO_25")
-            {
-                gpioWrite25(false);
-                console.log("GPI25_VALUE: false");
+            else if(gpio0 === "RESET_GPIO_25") {
+                gpioWrite(22, 'GPIO_25', false).call();
             }
       });
   });
