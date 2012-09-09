@@ -98,54 +98,7 @@ app.router.get('/gpio/:cmd', function (cmd) {
         var gpio0=gpio;
         gpio0=unescape(gpio0.replace(/\+/g, " ")); // url decode
         console.log("GPIO="+gpio0);
-        if(gpio0 === "SET_GPIO_04") {
-            gpioWrite(7,  'GPIO_04', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_04") {
-            gpioWrite(7,  'GPIO_04', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_17") {
-            gpioWrite(11, 'GPIO_17', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_17") {
-            gpioWrite(11, 'GPIO_17', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_21") {
-            gpioWrite(13, 'GPIO_21', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_21") {
-            gpioWrite(13, 'GPIO_21', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_22") {
-            gpioWrite(15, 'GPIO_22', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_22") {
-            gpioWrite(15, 'GPIO_22', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_23") {
-            gpioWrite(16, 'GPIO_23', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_23") {
-            gpioWrite(16, 'GPIO_23', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_24") {
-            gpioWrite(18, 'GPIO_24', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_24") {
-            gpioWrite(18, 'GPIO_24', false).call();
-        }
-
-        if(gpio0 === "SET_GPIO_25") {
-            gpioWrite(22, 'GPIO_25', true).call();
-        }
-        else if(gpio0 === "RESET_GPIO_25") {
-            gpioWrite(22, 'GPIO_25', false).call();
-        }            
+        gpioCmd(gpio0);
     }        
 
     // responding back to the brower request
@@ -171,57 +124,62 @@ if(flag_use_websockets === true) {
           console.log('Received GPIO Data: '+data.wsdata);
             var gpio0=data.wsdata;
             console.log("GPIO="+gpio0);
-            if(gpio0 === "SET_GPIO_04") {
-                gpioWrite(7,  'GPIO_04', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_04") {
-                gpioWrite(7,  'GPIO_04', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_17") {
-                gpioWrite(11, 'GPIO_17', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_17") {
-                gpioWrite(11, 'GPIO_17', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_21") {
-                gpioWrite(13, 'GPIO_21', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_21") {
-                gpioWrite(13, 'GPIO_21', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_22") {
-                gpioWrite(15, 'GPIO_22', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_22") {
-                gpioWrite(15, 'GPIO_22', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_23") {
-                gpioWrite(16, 'GPIO_23', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_23") {
-                gpioWrite(16, 'GPIO_23', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_24") {
-                gpioWrite(18, 'GPIO_24', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_24") {
-                gpioWrite(18, 'GPIO_24', false).call();
-            }
-
-            if(gpio0 === "SET_GPIO_25") {
-                gpioWrite(22, 'GPIO_25', true).call();
-            }
-            else if(gpio0 === "RESET_GPIO_25") {
-                gpioWrite(22, 'GPIO_25', false).call();
-            }
+            gpioCmd(gpio0);
       });
   });
 }
+
+function gpioCmd(gpio0) {
+        
+    if(gpio0 === "SET_GPIO_04") {
+        gpioWrite(7,  'GPIO_04', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_04") {
+        gpioWrite(7,  'GPIO_04', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_17") {
+        gpioWrite(11, 'GPIO_17', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_17") {
+        gpioWrite(11, 'GPIO_17', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_21") {
+        gpioWrite(13, 'GPIO_21', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_21") {
+        gpioWrite(13, 'GPIO_21', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_22") {
+        gpioWrite(15, 'GPIO_22', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_22") {
+        gpioWrite(15, 'GPIO_22', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_23") {
+        gpioWrite(16, 'GPIO_23', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_23") {
+        gpioWrite(16, 'GPIO_23', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_24") {
+        gpioWrite(18, 'GPIO_24', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_24") {
+        gpioWrite(18, 'GPIO_24', false).call();
+    }
+
+    if(gpio0 === "SET_GPIO_25") {
+        gpioWrite(22, 'GPIO_25', true).call();
+    }
+    else if(gpio0 === "RESET_GPIO_25") {
+        gpioWrite(22, 'GPIO_25', false).call();
+    }            
+};
 
 // CTRL+C (sigint)
 process.on( 'SIGINT', function() {
