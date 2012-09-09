@@ -2,6 +2,9 @@
 // NOTE: Raspberry Pi GPIO access requires sudo 
 // $ sudo node app.js 8080
 // $ npm start (for testing, will use port 8080)
+//
+// to test websockets version use:
+// $ sudo node app.js 8080 websockets
 
 var flatiron = require('flatiron'),
     path = require('path'),
