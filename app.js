@@ -43,7 +43,7 @@ function gpioWrite(gpionumber, gpioname, value) {
     return function() {
         rpi_gpio.write(gpionumber, value, function(err) {
             if (err) throw err;
-            console.log('[CB] Written to pin number '+gpionumber+' ('+gpioname+') value:'+value);
+            console.log('Written to pin number '+gpionumber+' ('+gpioname+') value:'+value);
         });        
     };
 };
