@@ -1,0 +1,11 @@
+/*  CSS by Jorge Encarnação - @jfgen on Twitter */
+
+@media screen and (max-width: 1281px){
+	section{width:100%;}
+	#block01{ width: 100%; padding: 0;}
+	button{font-size: 0.75em; width: 80%; height: 40px;}
+	.output{display: none;}
+}
+@media screen and (min-width: 800px){
+	.output{display: inline;}
+}
