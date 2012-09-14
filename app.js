@@ -81,7 +81,7 @@ app.router.get('/gpio/:cmd', function (cmd) {
     // decode SPACE and ; chars (previously encoded in client)
     var gpio = cmd;
     //var gpio = cmd.replace(/_/g, " ");
-    //gpio = gpio.replace(/--/g, ";");
+    gpio = gpio.replace(/--/g, ";");
 
     console.log('Decoded gpio command: '+gpio);
 
@@ -94,6 +94,7 @@ app.router.get('/gpio/:cmd', function (cmd) {
         for(var i=0, len=gpio_array.length; i<len; i++) {
             gpio_cmd=unescape(gpio_array[i].replace(/\+/g, " ")); // url decode
             console.log("GPIO"+i.toString()+"="+gpio_cmd);
+            gpioCmd(gpio_cmd);
         }
     }
     else {
