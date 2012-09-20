@@ -88,7 +88,7 @@ app.http.before = [
 //app.router.configure({ "strict": false });
 
 // flatiron router - REST to get gpio_status
-app.router.get('/gpiostatus/', function () {
+app.router.get('/gpiostatus', function () {
     // responding back to the brower request
     this.res.writeHead(200, {'Content-Type':'application/json'});
     this.res.write(JSON.stringify(gpio_status));

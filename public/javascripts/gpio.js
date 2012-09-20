@@ -59,7 +59,7 @@ RPI.Gpio.prototype.getGpioStatus = function () {
 	// internal ajax request object
 	var sendReq = this._getXmlHttpRequestObject();	
 
-	var url_cmd = '/gpiostatus/';
+	var url_cmd = '/gpiostatus';
 
 	if (sendReq.readyState == 4 || sendReq.readyState == 0) {
 		sendReq.open("GET",url_cmd,true);
