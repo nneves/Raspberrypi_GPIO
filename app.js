@@ -14,6 +14,17 @@ var flatiron = require('flatiron'),
     tcpport = 8080,
     flag_use_websockets = false;
 
+var gpio_status = {
+        "GPIO_04": false,
+        "GPIO_17": false,
+        "GPIO_21": false,
+        "GPIO_22": false,
+        "GPIO_23": false,
+        "GPIO_24": false,
+        "GPIO_25": false,
+        "WEBSOCKETS", false
+    };  
+
 // Processing parameters
 if(process.argv[2] !== undefined && process.argv[2].trim() !== '') {
     tcpport = process.argv[2];
@@ -26,9 +37,11 @@ else {
 if(process.argv[3] !== undefined && process.argv[3].trim() !== '' && process.argv[3].trim() === 'websockets') {
     flag_use_websockets = true;
     console.log("Use WebSockets protocol!");
+    gpio_status["WEBSOCKETS"] = true;
 }
 else {
     console.log("Using default Http REST protocol!");
+    gpio_status["WEBSOCKETS"] = false;
 }
 
 // maps / exports gpio pins
@@ -47,6 +60,7 @@ function gpioWrite(gpionumber, gpioname, value) {
         rpi_gpio.write(gpionumber, value, function(err) {
             if (err) throw err;
             console.log('Written to pin number '+gpionumber+' ('+gpioname+') value:'+value+'\r\n');
+            gpio_status[gpioname] = value;
         });        
     };
 };
@@ -73,7 +87,15 @@ app.http.before = [
 
 //app.router.configure({ "strict": false });
 
-// flatiron router - API for GCODE commands
+// flatiron router - REST to get gpio_status
+app.router.get('/gpiostatus/', function () {
+    // responding back to the brower request
+    this.res.writeHead(200, {'Content-Type':'application/json'});
+    this.res.write(gpio_status);
+    this.res.end();
+};
+
+// flatiron router - REST GPIO commands
 app.router.get('/gpio/:cmd', function (cmd) {
 
     console.log('\r\nParsing REST gpio command: '+cmd);

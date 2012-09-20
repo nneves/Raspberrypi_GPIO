@@ -51,6 +51,23 @@ RPI.Gpio.prototype.sendCmd = function (cmd) {
 		sendReq.send(null);
 	}	
 };
+//-----------------------------------------------------------------------------
+RPI.Gpio.prototype.getGpioStatus = function () {
+
+	// internal ajax request object
+	var sendReq = this._getXmlHttpRequestObject();	
+
+	var url_cmd = '/gpiostatus/';
+
+	if (sendReq.readyState == 4 || sendReq.readyState == 0) {
+		sendReq.open("GET",url_cmd,true);
+        sendReq.setRequestHeader('Accept','application/json');
+        sendReq.setRequestHeader('Content-Type','text/xml');
+		sendReq.onreadystatechange = this._getGpioStatus(url_cmd);
+        console.log("-> AJAX gpiostatus");
+		sendReq.send(null);
+	}	
+};
 //-----------------------------------------------------------------------------	
 RPI.Gpio.prototype.ui_control = function (that) { 
     var gpio_id = that.id;
@@ -93,6 +110,14 @@ RPI.Gpio.prototype._sendCmdCB = function (url) {
 	return function() {
 		if (this.readyState == 4 || this.readyState == 0) {
 			console.log('<- AJAX cmd['+url+'] = '+this.responseText);
+		}
+	};
+};
+//-----------------------------------------------------------------------------	
+RPI.Gpio.prototype._getGpioStatus = function (url) {
+	return function() {
+		if (this.readyState == 4 || this.readyState == 0) {
+			console.log('<- AJAX cmd['+url+'] = '+JSON.stringify(this.responseText));
 		}
 	};
 };
