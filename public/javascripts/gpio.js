@@ -28,7 +28,9 @@ RPI.Gpio = function () {
     	"GPIO_23": false,
     	"GPIO_24": false,
     	"GPIO_25": false
-  	};	
+  	};
+
+  	this.getGpioStatus();	
 };
 //-----------------------------------------------------------------------------
 
@@ -117,7 +119,8 @@ RPI.Gpio.prototype._sendCmdCB = function (url) {
 RPI.Gpio.prototype._getGpioStatus = function (url) {
 	return function() {
 		if (this.readyState == 4 || this.readyState == 0) {
-			console.log('<- AJAX cmd['+url+'] = '+JSON.stringify(this.responseText));
+			console.log('<- AJAX cmd['+url+'] = '+this.responseText);
+			this.gpio_cache = JSON.parse(this.responseText);
 		}
 	};
 };
