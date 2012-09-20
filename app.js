@@ -22,7 +22,7 @@ var gpio_status = {
         "GPIO_23": false,
         "GPIO_24": false,
         "GPIO_25": false,
-        "WEBSOCKETS", false
+        "WEBSOCKETS": false
     };  
 
 // Processing parameters
@@ -91,9 +91,9 @@ app.http.before = [
 app.router.get('/gpiostatus/', function () {
     // responding back to the brower request
     this.res.writeHead(200, {'Content-Type':'application/json'});
-    this.res.write(gpio_status);
+    this.res.write(JSON.stringify(gpio_status));
     this.res.end();
-};
+});
 
 // flatiron router - REST GPIO commands
 app.router.get('/gpio/:cmd', function (cmd) {
@@ -130,7 +130,7 @@ app.router.get('/gpio/:cmd', function (cmd) {
     this.res.writeHead(200, {'Content-Type':'text/plain'});
     this.res.write('ACK');
     this.res.end();
-    });
+});
 
 // launch app on tcpoprt
 app.start(tcpport);
