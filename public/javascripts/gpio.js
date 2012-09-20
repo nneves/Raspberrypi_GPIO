@@ -91,6 +91,19 @@ RPI.Gpio.prototype.ui_control = function (that) {
     this.sendCmd(gpio_pre_cmd+gpio_id);
 };
 //-----------------------------------------------------------------------------	
+RPI.Gpio.prototype.init_ui_control = function (that) { 
+    var gpio_id = that.id;
+
+    console.log("Initialize UI ctrl: "+gpio_id +' = '+this.gpio_cache[gpio_id]);
+
+    if(this.gpio_cache[gpio_id] === true) {
+      that.className = "on";
+    }
+    else {
+      that.className = "off";
+    }
+};
+//-----------------------------------------------------------------------------	
 
 //-----------------------------------------------------------------------------
 // Private - RPI namespace Scope

@@ -32,6 +32,13 @@
   <script type="text/javascript" src="javascripts/gpio.js"></script>
   <script type="text/javascript">
     var rpi_gpio = RPI.Gpio();
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_04);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_17);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_21);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_22);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_23);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_24);
+    rpi_gpio.init_ui_control(toggles.elements.GPIO_25);
   </script>
 	</body>
 </html>
