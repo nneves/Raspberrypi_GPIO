@@ -1,0 +1,48 @@
+<!doctype html>  
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Raspberry Pi GPIO WebInterface</title>
+  <link rel="stylesheet" href="stylesheets/reset.css" media="all" />
+  <link rel="stylesheet" href="stylesheets/style.css" media="all" />
+<!--   <link rel='stylesheet' media='screen and (max-width: 700px)' href='stylesheets/small.css' /> -->
+  <link href="stylesheets/small.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+<section>
+   <div id="block01" class="block01">
+    <form action="" id="toggles" class="toggles">
+      <fieldset>
+        <legend>Turn On</legend>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_04');">Set <span class="output">Output</span> 01</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_17');">Set <span class="output">Output</span> 02</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_21');">Set <span class="output">Output</span> 03</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_22');">Set <span class="output">Output</span> 04</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_23');">Set <span class="output">Output</span> 05</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_24');">Set <span class="output">Output</span> 06</button>
+        <button class="on" type="button" onclick="rpi_gpio.sendCmd('SET_GPIO_25');">Set <span class="output">Output</span> 07</button>
+      </fieldset>
+      <fieldset style="float: right;">
+        <legend>Turn Off</legend>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_04');">Reset <span class="output">Output</span> 01</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_17');">Reset <span class="output">Output</span> 02</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_21');">Reset <span class="output">Output</span> 03</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_22');">Reset <span class="output">Output</span> 04</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_23');">Reset <span class="output">Output</span> 05</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_24');">Reset <span class="output">Output</span> 06</button>
+        <button class="off" type="button" onclick="rpi_gpio.sendCmd('RESET_GPIO_25');">Reset <span class="output">Output</span> 07</button>
+    </fieldset>
+    </form>
+  </div>
+</section>
+
+  <script type="text/javascript" src="javascripts/gpio.js"></script>
+  <script type="text/javascript">
+    var rpi_gpio = RPI.Gpio();
+  </script>
+	</body>
+</html>

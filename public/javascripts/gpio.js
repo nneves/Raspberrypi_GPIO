@@ -19,6 +19,16 @@ RPI.Gpio = function () {
 		return new arguments.callee();
 	}	
 	console.log("Creating RPI.Gpio object.");
+
+  	this.gpio_cache = {
+    	"GPIO_04": false,
+    	"GPIO_17": false,
+    	"GPIO_21": false,
+    	"GPIO_22": false,
+    	"GPIO_23": false,
+    	"GPIO_24": false,
+    	"GPIO_25": false
+  	};	
 };
 //-----------------------------------------------------------------------------
 
@@ -40,6 +50,26 @@ RPI.Gpio.prototype.sendCmd = function (cmd) {
         console.log("-> AJAX cmd: "+cmd);
 		sendReq.send(null);
 	}	
+};
+//-----------------------------------------------------------------------------	
+RPI.Gpio.prototype.ui_control = function (that) { 
+    var gpio_id = that.id;
+    var gpio_pre_cmd = "";
+
+    this.gpio_cache[gpio_id] = !this.gpio_cache[gpio_id];
+    console.log(gpio_id +' = '+this.gpio_cache[gpio_id]);
+
+    if(this.gpio_cache[gpio_id] === true) {
+      that.className = "on";
+      gpio_pre_cmd = "SET_";
+    }
+    else {
+      that.className = "off";
+      gpio_pre_cmd = "RESET_";
+    }
+
+    // send AJAX REST request to Raspberrypi_GPIO node app (SET_GPIO_04)
+    this.sendCmd(gpio_pre_cmd+gpio_id);
 };
 //-----------------------------------------------------------------------------	
 
