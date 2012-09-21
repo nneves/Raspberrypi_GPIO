@@ -12,14 +12,15 @@ var myobj = RPI.Gpio();
 //-----------------------------------------------------------------------------
 var RPI = {};
 //-----------------------------------------------------------------------------
-RPI.Gpio = function () {
+RPI.Gpio = function (ui_ctrls) {
 	//var rpi_gpio = RPI.Gpio();	
 	if(!(this instanceof arguments.callee)) {
 		console.log("Auto create and return object!");
-		return new arguments.callee();
+		return new arguments.callee(ui_ctrls);
 	}	
 	console.log("Creating RPI.Gpio object.");
 
+	this.gpio_ctrls = ui_ctrls;
   	this.gpio_cache = {
     	"GPIO_04": false,
     	"GPIO_17": false,
@@ -65,7 +66,7 @@ RPI.Gpio.prototype.getGpioStatus = function () {
 		sendReq.open("GET",url_cmd,true);
         sendReq.setRequestHeader('Accept','application/json');
         sendReq.setRequestHeader('Content-Type','text/xml');
-		sendReq.onreadystatechange = this._getGpioStatus(url_cmd);
+		sendReq.onreadystatechange = this._getGpioStatus(this, url_cmd);
         console.log("-> AJAX gpiostatus");
 		sendReq.send(null);
 	}	
@@ -104,6 +105,16 @@ RPI.Gpio.prototype.init_ui_control = function (that) {
     }
 };
 //-----------------------------------------------------------------------------	
+RPI.Gpio.prototype.init_all_ui_control = function () { 
+    this.init_ui_control(this.gpio_ctrls["GPIO_04"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_17"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_21"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_22"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_23"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_24"]);
+    this.init_ui_control(this.gpio_ctrls["GPIO_25"]);
+};
+//-----------------------------------------------------------------------------	
 
 //-----------------------------------------------------------------------------
 // Private - RPI namespace Scope
@@ -129,11 +140,19 @@ RPI.Gpio.prototype._sendCmdCB = function (url) {
 	};
 };
 //-----------------------------------------------------------------------------	
-RPI.Gpio.prototype._getGpioStatus = function (url) {
+RPI.Gpio.prototype._getGpioStatus = function (that, url) {
 	return function() {
 		if (this.readyState == 4 || this.readyState == 0) {
+			if (that === undefined || typeof that !== 'object') {
+	    		console.log('Invalid caller pointer in function _getGpioStatus!');
+	    		return;
+	    	}			
 			console.log('<- AJAX cmd['+url+'] = '+this.responseText);
-			this.gpio_cache = JSON.parse(this.responseText);
+			that.gpio_cache = JSON.parse(this.responseText);
+			console.log(that.gpio_cache);
+
+			// calls ui initilizations function
+			that.init_all_ui_control();
 		}
 	};
 };

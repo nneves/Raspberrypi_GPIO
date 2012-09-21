@@ -31,14 +31,15 @@
 
   <script type="text/javascript" src="javascripts/gpio.js"></script>
   <script type="text/javascript">
-    var rpi_gpio = RPI.Gpio();
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_04);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_17);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_21);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_22);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_23);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_24);
-    rpi_gpio.init_ui_control(toggles.elements.GPIO_25);
+    var rpi_gpio = RPI.Gpio({ 
+      "GPIO_04": toggles.elements.GPIO_04, 
+      "GPIO_17": toggles.elements.GPIO_17,
+      "GPIO_21": toggles.elements.GPIO_21,
+      "GPIO_22": toggles.elements.GPIO_22,
+      "GPIO_23": toggles.elements.GPIO_23,
+      "GPIO_24": toggles.elements.GPIO_24,
+      "GPIO_25": toggles.elements.GPIO_25
+    });
   </script>
 	</body>
 </html>
