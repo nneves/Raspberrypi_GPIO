@@ -32,7 +32,14 @@ RPI.Gpio = function (ui_ctrls) {
     	"WEBSOCKETS": false
   	};
 
-  	this.getGpioStatus();	
+  	this.getGpioStatus();
+
+  	//websocket funcionality
+    this.socket = io.connect('http://workbench01');
+    this.socket.on('news', function (data) {
+      console.log(data);
+      this.socket.emit('my other event', { my: 'data' });
+    });  		
 };
 //-----------------------------------------------------------------------------
 
@@ -43,7 +50,7 @@ RPI.Gpio.prototype.sendCmd = function (cmd) {
 
 	if (this.gpio_cache["WEBSOCKETS"] === true) {
 		console.log("Socket Emit: "+cmd);
-		socket.emit('gpiodata', { wsdata: cmd });
+		this.socket.emit('gpiodata', { wsdata: cmd });
 	}
 	else {
 		// internal ajax request object
