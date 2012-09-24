@@ -28,7 +28,8 @@ RPI.Gpio = function (ui_ctrls) {
     	"GPIO_22": false,
     	"GPIO_23": false,
     	"GPIO_24": false,
-    	"GPIO_25": false
+    	"GPIO_25": false,
+    	"WEBSOCKETS": false
   	};
 
   	this.getGpioStatus();	
@@ -40,19 +41,25 @@ RPI.Gpio = function (ui_ctrls) {
 //-----------------------------------------------------------------------------	
 RPI.Gpio.prototype.sendCmd = function (cmd) {
 
-	// internal ajax request object
-	var sendReq = this._getXmlHttpRequestObject();	
+	if (this.gpio_cache["WEBSOCKETS"] === true) {
+		console.log("Socket Emit: "+cmd);
+		socket.emit('gpiodata', { wsdata: cmd });
+	}
+	else {
+		// internal ajax request object
+		var sendReq = this._getXmlHttpRequestObject();	
 
-	var url_cmd = '/gpio/'+cmd;
+		var url_cmd = '/gpio/'+cmd;
 
-	if (sendReq.readyState == 4 || sendReq.readyState == 0) {
-		sendReq.open("GET",url_cmd,true);
-        sendReq.setRequestHeader('Accept','application/json');
-        sendReq.setRequestHeader('Content-Type','text/xml');
-		sendReq.onreadystatechange = this._sendCmdCB(url_cmd);
-        console.log("-> AJAX cmd: "+cmd);
-		sendReq.send(null);
-	}	
+		if (sendReq.readyState == 4 || sendReq.readyState == 0) {
+			sendReq.open("GET",url_cmd,true);
+	        sendReq.setRequestHeader('Accept','application/json');
+	        sendReq.setRequestHeader('Content-Type','text/xml');
+			sendReq.onreadystatechange = this._sendCmdCB(url_cmd);
+	        console.log("-> AJAX cmd: "+cmd);
+			sendReq.send(null);
+		}	
+	}
 };
 //-----------------------------------------------------------------------------
 RPI.Gpio.prototype.getGpioStatus = function () {
