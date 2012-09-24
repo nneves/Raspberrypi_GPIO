@@ -1,0 +1,1 @@
+// dummy socket.io.js file (required to silence browser errors when loading default HTTP REST mode - without websockets support)
