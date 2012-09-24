@@ -35,11 +35,16 @@ RPI.Gpio = function (ui_ctrls) {
   	this.getGpioStatus();
 
   	//websocket funcionality
-    this.socket = io.connect('http://'+window.location.host);
-    this.socket.on('news', function (data) {
-      console.log(data);
-      this.socket.emit('my other event', { my: 'data' });
-    });  		
+  	if (typeof io !== "undefined") {
+	    this.socket = io.connect('http://'+window.location.host);
+	    this.socket.on('news', function (data) {
+	      console.log(data);
+	      this.socket.emit('my other event', { my: 'data' });
+	    });
+	}
+	else {
+		this.gpio_cache["WEBSOCKETS"] = false;
+	}
 };
 //-----------------------------------------------------------------------------
 
