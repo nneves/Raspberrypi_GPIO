@@ -3,10 +3,10 @@ Raspberrypi GPIO Remote Control
 
 Remote control appliances via WebInterface by using a RaspberryPi + Node.js + GPIO Relay control board (turning On/Off a coffee machine, toaster, heater, etc from a webpage in your mobile phone, tablet or laptop)
 
-* Desktop UI version (by Jorge Encarnação - @jfgen)
+Desktop UI version (by Jorge Encarnação - @jfgen)
 ![RPIGPIOUI01](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui01.png)
 
-* Mobile/Tablet UI experimental version (by Jorge Encarnação - @jfgen)
+Mobile/Tablet UI experimental version (by Jorge Encarnação - @jfgen)
 ![RPIGPIOUI02](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui02.png)
 
 GPIO additional info
@@ -24,11 +24,10 @@ https://github.com/quick2wire/quick2wire-gpio-admin
 
 NPM dependencies
 ------------------
-Raspberry Pi GPIO Remote control dependes on the followinf node.js packages:
+Raspberry Pi GPIO Remote control dependes on the following node.js packages:
 
 * rpi-gpio
 https://github.com/JamesBarwell/rpi-gpio.js
-
 
 * Flatiron
 
@@ -40,8 +39,9 @@ How to compile node.js on a RaspberryPi
 ------------------
 https://github.com/nneves/Raspberrypi_NodeJS
 
-Clone project and install Node.js necessary packages
+How to get things running
 ------------------
+Clone project and install Node.js necessary packages
 ```bash
 git clone git://github.com/nneves/Raspberrypi_GPIO.git
 
