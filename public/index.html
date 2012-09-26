@@ -8,26 +8,33 @@
 <!--   <link rel='stylesheet' media='screen and (max-width: 700px)' href='stylesheets/small.css' /> -->
   <link href="stylesheets/small.css" rel="stylesheet" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link href='http://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet' type='text/css'>
   <style type="text/css">
   </style>
 </head>
 <body>
-<section>
-   <div id="block01" class="block01">
-    <form action="" id="toggles" class="toggles">
-      <fieldset>
-        <legend>rPi GPIO Remote Control</legend>
-        <button class="off" type="button" id="GPIO_04" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 01 (GPIO_04)</button>
-        <button class="off" type="button" id="GPIO_17" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 02 (GPIO_17)</button>
-        <button class="off" type="button" id="GPIO_21" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 03 (GPIO_21)</button>
-        <button class="off" type="button" id="GPIO_22" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 04 (GPIO_22)</button>
-        <button class="off" type="button" id="GPIO_23" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 05 (GPIO_23)</button>
-        <button class="off" type="button" id="GPIO_24" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 06 (GPIO_24)</button>
-        <button class="off" type="button" id="GPIO_25" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 07 (GPIO_25)</button>
-      </fieldset>
-    </form>
-  </div>
-</section>
+  <header>
+    <div class="wrapper"><img class="logo" src="images/raspberry.png"><h1>Raspberry Pi - GPIO WebInterface</h1>   </div> 
+  </header>  
+  <section>
+     <div id="block01" class="block01">
+      <form action="" id="toggles" class="toggles">
+        <fieldset>
+          <legend>rPi GPIO Remote Control</legend>
+          <button class="off" type="button" id="GPIO_04" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 01 (GPIO_04)</button>
+          <button class="off" type="button" id="GPIO_17" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 02 (GPIO_17)</button>
+          <button class="off" type="button" id="GPIO_21" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 03 (GPIO_21)</button>
+          <button class="off" type="button" id="GPIO_22" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 04 (GPIO_22)</button>
+          <button class="off" type="button" id="GPIO_23" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 05 (GPIO_23)</button>
+          <button class="off" type="button" id="GPIO_24" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 06 (GPIO_24)</button>
+          <button class="off" type="button" id="GPIO_25" onclick="rpi_gpio.ui_control(this);"><span class="output">Output</span> 07 (GPIO_25)</button>
+        </fieldset>
+      </form>
+    </div>
+    <footer>
+      <p class="credits">by: Nelson Neves - <a target="_blank" href="http://twitter.com/botdream">@botdream</a> on twitter</p>
+    </footer>
+  </section>
 
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="javascripts/gpio.js"></script>
