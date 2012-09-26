@@ -1,11 +1,16 @@
-Raspberrypi_GPIO
-================
+Raspberrypi GPIO Remote Control
+------------------
 
 Remote control appliances via WebInterface by using a RaspberryPi + Node.js + GPIO Relay control board (turning On/Off a coffee machine, toaster, heater, etc from a webpage in your mobile phone, tablet or laptop)
 
-Work in progress ... (GPIO remote control completed, some optimization required)
+* Desktop UI version (by Jorge Encarnação - @jfgen)
+![RPIGPIOUI01](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui01.png)
 
+* Mobile/Tablet UI experimental version (by Jorge Encarnação - @jfgen)
+![RPIGPIOUI02](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui02.png)
 
+GPIO additional info
+------------------
 General Purpose Input/Output (GPIO)
 http://elinux.org/Rpi_Low-level_peripherals#General_Purpose_Input
 
@@ -16,13 +21,27 @@ Safe control GPIO from command line
 http://quick2wire.com/2012/05/safe-controlled-access-to-gpio-on-the-raspberry-pi/
 https://github.com/quick2wire/quick2wire-gpio-admin
 
-Raspberry Pi GPIO node.js packages
+
+NPM dependencies
+------------------
+Raspberry Pi GPIO Remote control dependes on the followinf node.js packages:
+
+* rpi-gpio
 https://github.com/JamesBarwell/rpi-gpio.js
 
+
+* Flatiron
+
+* Socket.io
+
+* others - please check package.json
+
 How to compile node.js on a RaspberryPi
+------------------
 https://github.com/nneves/Raspberrypi_NodeJS
 
-Install Node.js necessary packages
+Clone project and install Node.js necessary packages
+------------------
 ```bash
 git clone git://github.com/nneves/Raspberrypi_GPIO.git
 
@@ -31,7 +50,7 @@ cd Raspberrypi_GPIO
 npm install
 ```
 
-Raspberry Pi GPIO access requires sudo
+Raspberry Pi GPIO access requires sudo (for gpio access - still working on a safer solution)
 ```bash
 sudo node server.js 8080
 
@@ -41,12 +60,17 @@ npm start
 ```
 
 Experimental testing with WebSockets protocol
+------------------
 ```bash
 sudo node server.js 8080 websockets
 ```
 
+GoogleTalk (XMPP) integration
+------------------
+https://github.com/nneves/Raspberrypi_GPIO_njsbot
+
 License
-=======
+------------------
 Copyright (C) 2012 Nelson Neves
 
 This program is free software: you can redistribute it and/or modify
