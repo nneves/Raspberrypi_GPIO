@@ -23,18 +23,6 @@ Safe control GPIO from command line
 http://quick2wire.com/2012/05/safe-controlled-access-to-gpio-on-the-raspberry-pi/
 https://github.com/quick2wire/quick2wire-gpio-admin
 
-Electronic Schematics
-------------------
-
-![RPIGPIOUI03](/nneves/Raspberrypi_GPIO/raw/master/specs/RaspberryPi_GPIO_schematic.jpg)
-
-List of materials:
-- 1 power supply 5VDC @ 2A (dedicated to electronic board)
-- 1 power plug (jack)
-- 7 relay 5DC (electromagnetic switch): NAIS DS2Y-S-DC5V
-- 1 Darlington Transistor Driver chip ref: ULN2003AN
-- 7 2-pins Screw Terminals
-
 NPM dependencies
 ------------------
 Raspberry Pi GPIO Remote control dependes on the following node.js packages:
@@ -81,6 +69,18 @@ sudo node server.js 8080 websockets
 GoogleTalk (XMPP) integration
 ------------------
 https://github.com/nneves/Raspberrypi_GPIO_njsbot
+
+Electronic Schematics
+------------------
+
+![RPIGPIOUI03](/nneves/Raspberrypi_GPIO/raw/master/specs/RaspberryPi_GPIO_schematic.jpg)
+
+List of materials:
+* 1 power supply 5VDC @ 2A (dedicated to electronic board)
+* 1 power plug (jack)
+* 7 relay 5DC (electromagnetic switch): NAIS DS2Y-S-DC5V
+* 1 Darlington Transistor Driver chip ref: ULN2003AN
+* 7 2-pins Screw Terminals
 
 License
 ------------------
