@@ -141,15 +141,14 @@ if(flag_use_websockets === true) {
 
   var io = require('socket.io').listen(app.server);
   io.sockets.on('connection', function(socket) {
-      socket.emit('news', { hello: 'world' });
-      socket.on('my other event', function(data) {
-          console.log(data);
-      });
+
       socket.on('gpiodata', function(data) {
           console.log('Received GPIO Data: '+data.wsdata);
             var gpio0=data.wsdata;
             console.log("GPIO="+gpio0);
             gpioCmd(gpio0);
+            // broadcast to all clients the new received update command for GPIO (cmd replication)
+            socket.emit('gpionewstatus', { 'data': data });
       });
   });
 }

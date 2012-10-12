@@ -37,9 +37,8 @@ RPI.Gpio = function (ui_ctrls) {
   	//websocket funcionality
   	if (typeof io !== "undefined") {
 	    this.socket = io.connect('http://'+window.location.host);
-	    this.socket.on('news', function (data) {
-	      console.log(data);
-	      this.socket.emit('my other event', { my: 'data' });
+	    this.socket.on('gpionewstatus', function (data) {
+	      console.log('GPIO new status: '+data);
 	    });
 	}
 	else {
