@@ -137,8 +137,8 @@ RPI.Gpio.prototype.init_all_ui_control = function () {
 //-----------------------------------------------------------------------------	
 RPI.Gpio.prototype.update_ui_control = function (cmd) { 
 
-	var gpio_id = cmd.replace(/SET_/g, "");
-	gpio_id = gpio_id.replace(/RESET_/g, "");
+	var gpio_id = cmd.replace(/RESET_/g, "");
+	gpio_id = gpio_id.replace(/SET_/g, "");
 	console.log('Found GPIO_ID: '+gpio_id);
 
 	if(cmd.indexOf("RESET_") != -1)
