@@ -148,7 +148,7 @@ if(flag_use_websockets === true) {
             console.log("GPIO="+gpio0);
             gpioCmd(gpio0);
             // broadcast to all clients the new received update command for GPIO (cmd replication)
-            socket.emit('gpionewstatus', { newdata: data.wsdata });
+            socket.broadcast.emit('gpionewstatus', { newdata: data.wsdata });
       });
   });
 }

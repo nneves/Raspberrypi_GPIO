@@ -39,6 +39,7 @@ RPI.Gpio = function (ui_ctrls) {
 	    this.socket = io.connect('http://'+window.location.host);
 	    this.socket.on('gpionewstatus', function (data) {
 	      console.log('GPIO new status: '+data.newdata);
+	      this.update_ui_control(data.newdata);
 	    });
 	}
 	else {
@@ -133,7 +134,20 @@ RPI.Gpio.prototype.init_all_ui_control = function () {
     this.init_ui_control(this.gpio_ctrls["GPIO_25"]);
 };
 //-----------------------------------------------------------------------------	
+RPI.Gpio.prototype.update_ui_control = function (cmd) { 
 
+	var gpio_id = cmd.replace(/SET_/g, "");
+	gpio_id = gpio_id.replace(/RESET_/g, "");
+	console.log('Found GPIO_ID: '+gpio_id);
+
+	if(cmd.indexOf("RESET_") != -1)
+		this.gpio_cache[gpio_id] = false;
+	else if(cmd.indexOf("SET_") != -1)
+		this.gpio_cache[gpio_id] = true;
+
+    this.init_ui_control(this.gpio_ctrls[gpio_id]);
+};
+//-----------------------------------------------------------------------------	
 //-----------------------------------------------------------------------------
 // Private - RPI namespace Scope
 //-----------------------------------------------------------------------------	
