@@ -35,11 +35,12 @@ RPI.Gpio = function (ui_ctrls) {
   	this.getGpioStatus();
 
   	//websocket funcionality
+  	var self = this;
   	if (typeof io !== "undefined") {
 	    this.socket = io.connect('http://'+window.location.host);
 	    this.socket.on('gpionewstatus', function (data) {
 	      console.log('GPIO new status: '+data.newdata);
-	      this.update_ui_control(data.newdata);
+	      self.update_ui_control(data.newdata);
 	    });
 	}
 	else {
@@ -147,7 +148,6 @@ RPI.Gpio.prototype.update_ui_control = function (cmd) {
 
     this.init_ui_control(this.gpio_ctrls[gpio_id]);
 };
-//-----------------------------------------------------------------------------	
 //-----------------------------------------------------------------------------
 // Private - RPI namespace Scope
 //-----------------------------------------------------------------------------	
