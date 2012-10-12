@@ -11,7 +11,7 @@
 @media screen and (max-width: 599px){
 	section{width:100%;}
 	#block01{ width: 90%; padding: 0;}	
-	body{background-color: #000;}
+	/*body{background-color: #000;}*/
  	header{border-top: none;}
  	h1{background: none; font-size: 0.9em; line-height: 1; height: auto; margin-bottom: 15px;}
  	section,.block01,.toggles,fieldset, button{width: 100%;	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
@@ -30,12 +30,13 @@
  			text-align: left; 	
  			border-top: 1px solid #CCC; 
  			width: 100%;
+ 			background-color: #000;
 	} 	
     button:active{ -webkit-box-shadow:  0px 2px 1px 1px rgba(189, 16, 67, 0.5);	box-shadow:  0px 2px 1px 1px rgba(189, 16, 67, 0.2);}
     .logo{display: none;/*temporary solution*/}
     button:after{ height:14px; width:14px; top: 21px; right: 20px;}
     footer{margin: 15px 0;}
-    .credits{color:#FFF; font-size: 0.85em}
+    .credits{color:#000; font-size: 0.85em}
 } 
 @media screen and (max-width: 320px){
 	h1{font-size: 0.7em; height: 10px; margin-bottom: 5px;}

@@ -62,18 +62,18 @@
       border: 0px;
       -webkit-border-radius: 6px; 
       border-radius: 6px;      
-      -webkit-box-shadow:  0px 14px 20px 1px rgba(0, 0, 0, 0.3);  
-      box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow:  0px 4px 5px 1px rgba(0, 0, 0, 0.3);  
+      box-shadow:  0px 4px 5px 1px rgba(0, 0, 0, 0.3);
       position: relative;
       display: block;
       cursor: pointer;
-      width: 80%;
+      width: 80%;      
     }
     button:before{
       content: 'OFF';
       position: absolute;
       top: 50%;
-      left: 30px;
+      right: 40px;
       margin-top: -8px;
     }
     button.on:before{
@@ -81,13 +81,13 @@
     }    
     button:after{
       content:'';
-      height: 11px;
-      width: 11px;
+      height: 12px;
+      width: 12px;
       background-color: green;
       display: block;
       position: absolute;
-      top: 50%;
-      left: 10px;
+      top: 15px;
+      right: 10px;
       -webkit-border-radius: 6px; 
       border-radius: 8px;
       margin-top: -5px;
@@ -96,8 +96,9 @@
       background-color: red;
     }
     button:active{
-      -webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);  
-        box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+      -webkit-box-shadow: inset 0px 1px 1px 1px rgba(255, 255, 255, 0.3);  
+        box-shadow: inset 0px 1px 1px 1px rgba(255, 255, 255, 0.3);
+  
     }
     button:active:after{
       background-color: #073804;
