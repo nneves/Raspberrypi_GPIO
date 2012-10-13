@@ -36,6 +36,7 @@ RPI.Gpio = function (ui_ctrls) {
 
   	//websocket funcionality
   	var self = this;
+  	var timer;
   	if (typeof io !== "undefined") {
 	    this.socket = io.connect('http://'+window.location.host);
 	    this.socket.on('gpionewstatus', function (data) {
@@ -45,6 +46,7 @@ RPI.Gpio = function (ui_ctrls) {
 	}
 	else {
 		this.gpio_cache["WEBSOCKETS"] = false;
+		this.timer_update_ui_control(this);
 	}
 };
 //-----------------------------------------------------------------------------
@@ -147,6 +149,19 @@ RPI.Gpio.prototype.update_ui_control = function (cmd) {
 		this.gpio_cache[gpio_id] = true;
 
     this.init_ui_control(this.gpio_ctrls[gpio_id]);
+};
+//-----------------------------------------------------------------------------	
+RPI.Gpio.prototype.timer_update_ui_control = function () { 
+
+    var self = this;
+    var timer_period = 5;
+
+    console.log('TIMER_TRIGGER');
+    this.getGpioStatus();
+
+    setTimeout(function () { 
+    	self.timer_update_ui_control(); 
+    }, timer_period*1000);
 };
 //-----------------------------------------------------------------------------
 // Private - RPI namespace Scope
