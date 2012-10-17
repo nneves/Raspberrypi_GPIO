@@ -84,6 +84,7 @@ List of materials:
 
 How to buy a (similar) pre-assembled electronic relay board
 ------------------
+NOTE: un-tested, will try this module real soon!
 
 Hobbytronics (UK) - fully assembled and RaspberryPi friendly (optically isolated): 
 http://www.hobbytronics.co.uk/raspberry-pi/8-channel-relay-board
