@@ -82,7 +82,7 @@ List of materials:
 * 1 Darlington Transistor Driver chip ref: ULN2003AN
 * 7 2-pins Screw Terminals
 
-How to buy a pre-assembled electronic relay board (similar or even better)
+How to buy a (similar) pre-assembled electronic relay board
 ------------------
 
 Hobbytronics (UK) - fully assembled and RaspberryPi friendly (optically isolated): 
