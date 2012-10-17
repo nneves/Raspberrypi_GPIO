@@ -82,6 +82,14 @@ List of materials:
 * 1 Darlington Transistor Driver chip ref: ULN2003AN
 * 7 2-pins Screw Terminals
 
+How to buy a pre-assembled electronic relay board (similar or even better)
+------------------
+* Hobbytronics (UK) - fully assembled anda RaspberryPi friendly
+http://www.hobbytronics.co.uk/raspberry-pi/8-channel-relay-board
+
+Just requires external power supply (between 8 to 12 VDC) and wiring cables:
+http://www.hobbytronics.co.uk/ribbon-jumper-female-40
+
 License
 ------------------
 Copyright (C) 2012 Nelson Neves
