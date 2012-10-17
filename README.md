@@ -85,8 +85,11 @@ List of materials:
 How to buy a pre-assembled electronic relay board (similar or even better)
 ------------------
 
-Hobbytronics (UK) - fully assembled and RaspberryPi friendly (optically isolated): http://www.hobbytronics.co.uk/raspberry-pi/8-channel-relay-board
-Requires external power supply (between 8 to 12 VDC) and wiring cables: http://www.hobbytronics.co.uk/ribbon-jumper-female-40
+Hobbytronics (UK) - fully assembled and RaspberryPi friendly (optically isolated): 
+http://www.hobbytronics.co.uk/raspberry-pi/8-channel-relay-board
+
+Requires external power supply (between 8 to 12 VDC) and wiring cables: 
+http://www.hobbytronics.co.uk/ribbon-jumper-female-40
 
 License
 ------------------
