@@ -53,7 +53,7 @@ npm install
 
 Raspberry Pi GPIO access requires sudo (for gpio access - still working on a safer solution)
 ```bash
-sudo node server.js 8080
+sudo node app.js 8080
 
 or (for quick testing)
 
@@ -63,7 +63,7 @@ npm start
 Experimental testing with WebSockets protocol
 ------------------
 ```bash
-sudo node server.js 8080 websockets
+sudo node app.js 8080 websockets
 ```
 
 GoogleTalk (XMPP) integration
