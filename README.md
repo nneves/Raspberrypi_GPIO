@@ -5,11 +5,11 @@ Remote control appliances via WebInterface by using a RaspberryPi + Node.js + GP
 
 Desktop UI version (by Jorge Encarnação - @jfgen)
 
-![RPIGPIOUI01](https://github.com/nneves/Raspberrypi_GPIO/blob/master/specs/rpiui01.png)
+![RPIGPIOUI01](specs/rpiui01.png)
 
 Mobile/Tablet UI experimental version (by Jorge Encarnação - @jfgen)
 
-![RPIGPIOUI02](https://github.com/nneves/Raspberrypi_GPIO/blob/master/specs/rpiui02.png)
+![RPIGPIOUI02](specs/rpiui02.png)
 
 GPIO additional info
 ------------------
@@ -73,7 +73,7 @@ https://github.com/nneves/Raspberrypi_GPIO_njsbot
 Electronic Schematics
 ------------------
 
-![RPIGPIOUI03](/nneves/Raspberrypi_GPIO/raw/master/specs/RaspberryPi_GPIO_schematic.jpg)
+![RPIGPIOUI03](specs/RaspberryPi_GPIO_schematic.jpg)
 
 List of materials:
 * 1 power supply 5VDC @ 2A (dedicated to electronic board)
