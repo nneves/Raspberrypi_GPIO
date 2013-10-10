@@ -5,11 +5,11 @@ Remote control appliances via WebInterface by using a RaspberryPi + Node.js + GP
 
 Desktop UI version (by Jorge Encarnação - @jfgen)
 
-![RPIGPIOUI01](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui01.png)
+![RPIGPIOUI01](https://github.com/nneves/Raspberrypi_GPIO/blob/master/specs/rpiui01.png)
 
 Mobile/Tablet UI experimental version (by Jorge Encarnação - @jfgen)
 
-![RPIGPIOUI02](/nneves/Raspberrypi_GPIO/raw/master/specs/rpiui02.png)
+![RPIGPIOUI02](https://github.com/nneves/Raspberrypi_GPIO/blob/master/specs/rpiui02.png)
 
 GPIO additional info
 ------------------
